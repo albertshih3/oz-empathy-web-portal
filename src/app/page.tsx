@@ -2,9 +2,10 @@
 
 import {
     getAuth,
-    updateProfile,
+    onAuthStateChanged,
     signInWithEmailAndPassword,
 } from "firebase/auth";
+import { useState } from "react";
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 import { Toaster, toast } from "sonner";
@@ -14,7 +15,7 @@ import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -49,6 +50,28 @@ const Login = () => {
     const auth = getAuth();
     console.log(auth.currentUser);
     const router = useRouter();
+
+    const useAuth = () => {
+        const [user, setUser] = useState<{ uid: string } | null>(null);
+    
+        useEffect(() => {
+            const unsubscribe = onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    setUser({ uid: user.uid });
+                    router.push("/home");
+                } else {
+                    setUser(null);
+                }
+            });
+    
+            // Cleanup subscription on unmount
+            return () => unsubscribe();
+        }, []);
+    
+        return user;
+    };
+
+    const user = useAuth();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
