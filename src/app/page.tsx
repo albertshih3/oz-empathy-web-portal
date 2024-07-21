@@ -46,7 +46,9 @@ const Login = () => {
     };
 
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
+    if (app.name && typeof window !== 'undefined') {
+        const analytics = getAnalytics(app);
+      }
     const auth = getAuth();
     console.log(auth.currentUser);
     const router = useRouter();

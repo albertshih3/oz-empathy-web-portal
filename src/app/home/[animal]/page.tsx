@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { firebaseConfig } from "@/lib/firebaseconfig";
 import { getFirestore, collection, getDocs, DocumentData, doc, updateDoc } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
 import { ChevronRight } from "lucide-react";
 import Unauthorized from "@/components/unauthorized";
 import {
@@ -35,6 +36,9 @@ import { Input } from "@/components/ui/input";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
+if (app.name && typeof window !== 'undefined') {
+  const analytics = getAnalytics(app);
+}
 
 const useAuth = () => {
   const [user, setUser] = useState<{ uid: string } | null>(null);
