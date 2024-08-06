@@ -32,6 +32,7 @@ import {
 import { Label } from "@/components/ui/label";
 
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -78,7 +79,7 @@ const Animal = ({ params }: { params: Params }) => {
       const animalDoc = doc(db, "animals", params.animal);
       const personalSnapshot = await getDocs(collection(animalDoc, "personal"));
       const personalAnimals = personalSnapshot.docs.map((doc) => ({
-        id: doc.id,
+        aniid: doc.id,
         photourl: doc.data().photourl || "",
         name: doc.data().name || '',
         ...doc.data(),
@@ -107,6 +108,7 @@ const Animal = ({ params }: { params: Params }) => {
   const [arrived, setArrived] = useState('');
   const [born, setBorn] = useState('');
   const [from, setFrom] = useState('');
+  const [aniid, setaniId] = useState('');
   const [id, setId] = useState('');
   const [keepernotes, setKeepernotes] = useState('');
   const [name, setName] = useState('');
@@ -119,6 +121,7 @@ const Animal = ({ params }: { params: Params }) => {
       setArrived(selectedAnimal.arrived);
       setBorn(selectedAnimal.born);
       setFrom(selectedAnimal.from);
+      setaniId(selectedAnimal.aniid);
       setId(selectedAnimal.id);
       setKeepernotes(selectedAnimal.keepernotes);
       setName(selectedAnimal.name);
@@ -132,7 +135,9 @@ const Animal = ({ params }: { params: Params }) => {
   function saveChanges() {
     console.log("FUNCTION CALLED");
     // Use the name of the animal as the document ID
-    const animalRef = selectedAnimal ? doc(db, 'animals', selectedAnimal.id) : doc(db, 'animals', '');
+    const paramsDocumentId = params.animal;
+    const actualDocumentId = selectedAnimal?.aniid;
+    const animalRef = selectedAnimal ? doc(db, 'animals', paramsDocumentId, 'personal', actualDocumentId) : doc(db, 'animals', '');
 
     const updatedData = {
       arrived: arrived,
@@ -150,7 +155,7 @@ const Animal = ({ params }: { params: Params }) => {
     console.log(updatedData);
 
     updateDoc(animalRef, updatedData);
-    router.push("/");
+    router.push(`/home`);
   };
 
 
@@ -236,7 +241,7 @@ const Animal = ({ params }: { params: Params }) => {
                   <Label htmlFor="keepernotes" className="text-right">
                     Keeper Notes
                   </Label>
-                  <Input
+                  <Textarea
                     id="keepernotes"
                     value={keepernotes}
                     onChange={e => setKeepernotes(e.target.value)}

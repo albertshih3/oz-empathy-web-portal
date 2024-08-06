@@ -48,14 +48,14 @@ const Login = () => {
     const app = initializeApp(firebaseConfig);
     if (app.name && typeof window !== 'undefined') {
         const analytics = getAnalytics(app);
-      }
+    }
     const auth = getAuth();
     console.log(auth.currentUser);
     const router = useRouter();
 
     const useAuth = () => {
         const [user, setUser] = useState<{ uid: string } | null>(null);
-    
+
         useEffect(() => {
             const unsubscribe = onAuthStateChanged(auth, (user) => {
                 if (user) {
@@ -65,11 +65,11 @@ const Login = () => {
                     setUser(null);
                 }
             });
-    
+
             // Cleanup subscription on unmount
             return () => unsubscribe();
         }, []);
-    
+
         return user;
     };
 
@@ -103,15 +103,18 @@ const Login = () => {
         <>
             <Toaster position="bottom-center" richColors />
             <div className="container relative flex flex-col items-center justify-center pt-20 lg:px-0">
+                <div className="absolute -z-10">
+                    <Image
+                        src="/hero.png"
+                        layout="fill"
+                        objectFit="cover"
+                        quality={100}
+                        alt="background"
+                    />
+                </div>
                 <div className="space0y-6 mx-auto flex w-full flex-col justify-center sm:w-[350px]">
                     <div className="flex flex-col items-center space-y-2 text-center">
                         <h1 className="text-2xl font-bold">Welcome Back!</h1>
-                        <Link
-                            className={buttonVariants({ variant: "linkHover2" })}
-                            href="/sign-up"
-                        >
-                            Do not have an account? Create one!
-                        </Link>
                     </div>
 
                     <Form {...form}>
