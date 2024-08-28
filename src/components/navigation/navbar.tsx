@@ -38,14 +38,8 @@ export function NavBar() {
                                         </a>
                                     </NavigationMenuLink>
                                 </li>
-                                <ListItem href="/users" title="Users & Accounts">
-                                    Edit app user and account information.
-                                </ListItem>
-                                <ListItem href="/docs/installation" title="Installation">
-                                    How to install dependencies and structure your app.
-                                </ListItem>
-                                <ListItem href="/docs/primitives/typography" title="Typography">
-                                    Styles for headings, paragraphs, lists...etc
+                                <ListItem href="/download" title="Download the app">
+                                    View the external app download page to download the app.
                                 </ListItem>
                             </ul>
                         </NavigationMenuContent>
