@@ -143,6 +143,7 @@ const Home = () => {
                 await updateDoc(animalRef, updatedData);
                 toast.success("Animal updated successfully");
                 setSelectedAnimal(null);
+                router.push(`/home`);
             } catch (error) {
                 console.error("Error updating document: ", error);
                 toast.error("Failed to update animal");
@@ -186,6 +187,7 @@ const Home = () => {
             // Refresh the animals list
             const newAnimal = { id: docRef.id, ...newAnimalData };
             setAnimals([...animalsList, newAnimal]);
+            router.push(`/home`);
         } catch (error) {
             console.error("Error adding document: ", error);
             toast.error("Failed to create new animal");
