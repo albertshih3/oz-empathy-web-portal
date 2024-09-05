@@ -179,7 +179,11 @@ const Animal = ({ params }: { params: Params }) => {
         <NavBar />
         <Button variant={"outline"} onClick={signOutUser}>Logout</Button>
       </div>
-      <Input className='flex p-5 m-5' placeholder='Search animals' onChange={e => setSearchTerm(e.target.value)} />
+      <Input
+        className="max-w-md mx-auto mb-5 mt-5"
+        placeholder="Search animals"
+        onChange={e => setSearchTerm(e.target.value)}
+      />
       <Dialog>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m-5'>
           {personalData.filter(animal => animal.name.toLowerCase().includes(searchTerm.toLowerCase())).map((animal, index) => (
@@ -189,12 +193,14 @@ const Animal = ({ params }: { params: Params }) => {
                 <CardTitle>{animal.name}</CardTitle>
               </CardHeader>
               <CardContent className='flex flex-col w-full justify-between'>
-                <DialogTrigger asChild>
-                  <Button variant={"expandIcon"} Icon={ChevronRight} iconPlacement="right" onClick={() => {
-                    setSelectedAnimal(animal);
-                    setIsAddingNew(false);
-                  }}>Edit Animal Details</Button>
-                </DialogTrigger>
+                <div className='flex flex-col w-full self-end'>
+                  <DialogTrigger asChild>
+                    <Button variant={"expandIcon"} Icon={ChevronRight} iconPlacement="right" onClick={() => {
+                      setSelectedAnimal(animal);
+                      setIsAddingNew(false);
+                    }}>Edit Animal Details</Button>
+                  </DialogTrigger>
+                </div>
               </CardContent>
             </Card>
           ))}
