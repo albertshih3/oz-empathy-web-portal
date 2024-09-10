@@ -89,13 +89,13 @@ const Download = () => {
                     <AccordionItem value="item-0">
                         <AccordionTrigger>How do I get updates?</AccordionTrigger>
                         <AccordionContent>
-                            <p>Check here! You can also check the on-grounds corkboard, as well as the chalkboard inside of the video theater. If you have the Testflight app installed (iOS), you will recieve a notification when a new update is available.</p>
+                            <p>Check here! You can also check the on-grounds corkboard, as well as the chalkboard inside of the video theater. If you have the Testflight app installed, you will recieve a notification when a new update is available.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-1">
                         <AccordionTrigger>What is Testflight? Do I need it?</AccordionTrigger>
                         <AccordionContent>
-                            <p>In order to keep the app private and for internal use only, we distrubuite the app through Testflight. This allows for easy distribution and updates to the app for authorized users. (It also is a way for me to work around the strict App Store restrictions that I don't want to deal with.)</p>
+                            <p>In order to keep the app private and for internal use only, we distrubuite the app through Testflight. This allows for easy distribution and updates to the app for authorized users. It also is a way for me to work around the strict App Store restrictions that I don't want to deal with.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
@@ -119,7 +119,7 @@ const Download = () => {
                     <AccordionItem value="item-5">
                         <AccordionTrigger>Why not go through official App Stores?</AccordionTrigger>
                         <AccordionContent>
-                            <p>Privacy and restrictions. Using Testflight and Google Drive allows us to keep the app private and for internal use only. We can add or remove users, and take down builds if they become public. It also allows me to bypass the strict App Store and Google Play Store restrictions that I don't want to deal with. (There is so much paperwork and legal stuff)</p>
+                            <p>Privacy and restrictions. Using Testflight and Google Drive allows us to keep the app private and for internal use only. We can add or remove users, and take down builds if they become public. It also allows me to bypass the strict App Store and Google Play Store restrictions that I don't want to deal with. There is so much paperwork and legal stuff</p>
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>
