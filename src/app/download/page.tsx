@@ -89,37 +89,37 @@ const Download = () => {
                     <AccordionItem value="item-0">
                         <AccordionTrigger>How do I get updates?</AccordionTrigger>
                         <AccordionContent>
-                            Check here! You can also check the on-grounds corkboard, as well as the chalkboard inside of the video theater. If you have the Testflight app installed (iOS), you will recieve a notification when a new update is available.
+                            <p>Check here! You can also check the on-grounds corkboard, as well as the chalkboard inside of the video theater. If you have the Testflight app installed (iOS), you will recieve a notification when a new update is available.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-1">
                         <AccordionTrigger>What is Testflight? Do I need it?</AccordionTrigger>
                         <AccordionContent>
-                            In order to keep the app private and for internal use only, we distrubuite the app through Testflight. This allows for easy distribution and updates to the app for authorized users. (It also is a way for me to work around the strict App Store restrictions that I don't want to deal with.)
+                            <p>In order to keep the app private and for internal use only, we distrubuite the app through Testflight. This allows for easy distribution and updates to the app for authorized users. (It also is a way for me to work around the strict App Store restrictions that I don't want to deal with.)</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
                         <AccordionTrigger>Do I need to keep Testflight installed?</AccordionTrigger>
                         <AccordionContent>
-                            While you do not need to keep the Testflight app installed, it is recommended to keep it installed as that is the only way you can recieve app updates. You can delete it after you have installed the Empathy Guide app, but you would need to redownload the app to get updates.
+                            <p>While you do not need to keep the Testflight app installed, it is recommended to keep it installed as that is the only way you can recieve app updates. You can delete it after you have installed the Empathy Guide app, but you would need to redownload the app to get updates.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-3">
                         <AccordionTrigger>Is it safe to install on Android?</AccordionTrigger>
                         <AccordionContent>
-                            Yes, it is safe. "Install unknown apps" is a standard security message that appears when you download an app from a source other than the Google Play Store. It is meant to protect your device from bad actors. The Empathy Guide app is safe to install and use. For extra protection, you can go into settings and disable "Install apps from this source" after you have installed the empathy guide app.
+                            <p>Yes, it is safe. "Install unknown apps" is a standard security message that appears when you download an app from a source other than the Google Play Store. It is meant to protect your device from bad actors. The Empathy Guide app is safe to install and use. For extra protection, you can go into settings and disable "Install apps from this source" after you have installed the empathy guide app.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-4">
                         <AccordionTrigger>Can I share this with my friends & family?</AccordionTrigger>
                         <AccordionContent>
-                            No. Just like the web version, this app is for internal use only. While all of the information in this guide is acceptable to share with the public, the app, and link to this site should be shared with Oakland Zoo staff, volunteers, and interns only.
+                            <p>No. Just like the web version, this app is for internal use only. While all of the information in this guide is acceptable to share with the public, the app, and link to this site should be shared with Oakland Zoo staff, volunteers, and interns only.</p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-5">
                         <AccordionTrigger>Why not go through official App Stores?</AccordionTrigger>
                         <AccordionContent>
-                            Privacy and restrictions. Using Testflight and Google Drive allows us to keep the app private and for internal use only. We can add or remove users, and take down builds if they become public. It also allows me to bypass the strict App Store and Google Play Store restrictions that I don't want to deal with. (There is so much paperwork and legal stuff)
+                            <p>Privacy and restrictions. Using Testflight and Google Drive allows us to keep the app private and for internal use only. We can add or remove users, and take down builds if they become public. It also allows me to bypass the strict App Store and Google Play Store restrictions that I don't want to deal with. (There is so much paperwork and legal stuff)</p>
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>
