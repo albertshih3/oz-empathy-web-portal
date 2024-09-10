@@ -6,7 +6,7 @@ import { initializeApp } from "firebase/app";
 // Components & Icons
 import { CircleArrowUpIcon, ArrowRight } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
     Card,
     CardContent,
@@ -15,6 +15,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import Link from "next/link";
 
 const app = initializeApp(firebaseConfig);
 if (app.name && typeof window !== 'undefined') {
@@ -28,18 +29,18 @@ const Download = () => {
                 <NavBarDl />
             </div>
             <div className='flex flex-col justify-center items-center'>
-                <Alert className='flex justify-between m-5' style={{ maxWidth: '95%' }}>
+                <Alert className='md:flex justify-between m-5' style={{ maxWidth: '95%' }}>
                     <CircleArrowUpIcon className='m-2' />
                     <div className='ml-5 mt-2 items-center'>
                         <AlertTitle>Version 1.2.0 is now available!</AlertTitle>
                         <AlertDescription>Download the latest version of the app to get the latest features and improvements.</AlertDescription>
                     </div>
-                    <Button variant={"expandIcon"} iconPlacement="right" Icon={ArrowRight}>Learn More</Button>
+                    <Button variant={"expandIcon"} iconPlacement="right" Icon={ArrowRight} className="mt-2 md:mt-0 left-12 md:left-0">Learn More</Button>
                 </Alert>
-                <h1 className='text-3xl font-bold mt-5'>Download the Empathy Guide Mobile App</h1>
-                <p className='text-lg mt-2 text-gray-600'>Get started by selecting your device from below.</p>
+                <h1 className='text-3xl font-bold mt-5 ml-5 mr-5'>Download the Empathy Guide Mobile App</h1>
+                <p className='text-lg ml-5 mr-5 mt-2 text-gray-600'>Get started by selecting your device from below.</p>
 
-                <div className='flex md:flex-col w-full content-center justify-center items-center mt-2 grid md:grid-cols-3 md:gap-4 :pl-10 pr-10'>
+                <div className='flex md:flex-col w-full md:content-center md:justify-center items-center mt-2 grid md:grid-cols-3 md:gap-4 pl-5 pr-5 md:pl-10 md:pr-10'>
                     <Card className='mt-5 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg'>
                         <CardHeader>
                             <CardTitle>Download for iOS</CardTitle>
@@ -70,7 +71,7 @@ const Download = () => {
                             <CardDescription>Visit the Empathy Guide website.</CardDescription>
                         </CardContent>
                         <CardFooter>
-                            <Button variant={"gooeyLeft"}>Visit Site</Button>
+                            <Link href='https://sites.google.com/view/ozempathy/oakland-zoo-empathy-guide' className={buttonVariants({ variant:"gooeyLeft" })}>Visit Site</Link>
                         </CardFooter>
                     </Card>
                 </div>
