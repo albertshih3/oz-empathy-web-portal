@@ -1,3 +1,5 @@
+import exp from "constants";
+
 const Changelog = () => {
     return (
         <div>
@@ -6,3 +8,5 @@ const Changelog = () => {
         </div>
     );
 };
+
+export default Changelog;
