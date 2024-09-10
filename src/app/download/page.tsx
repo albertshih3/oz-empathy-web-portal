@@ -16,6 +16,12 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import Link from "next/link";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
 
 const app = initializeApp(firebaseConfig);
 if (app.name && typeof window !== 'undefined') {
@@ -71,10 +77,53 @@ const Download = () => {
                             <CardDescription>Visit the Empathy Guide website.</CardDescription>
                         </CardContent>
                         <CardFooter>
-                            <Link href='https://sites.google.com/view/ozempathy/oakland-zoo-empathy-guide' className={buttonVariants({ variant:"gooeyLeft" })}>Visit Site</Link>
+                            <Link href='https://sites.google.com/view/ozempathy/oakland-zoo-empathy-guide' className={buttonVariants({ variant: "gooeyLeft" })}>Visit Site</Link>
                         </CardFooter>
                     </Card>
                 </div>
+            </div>
+
+            <div>
+                <h2 className='text-2xl font-bold mt-10 ml-10 mr-10'>Frequently Asked Questions</h2>
+                <Accordion type="single" collapsible className="mt-2 ml-10 mr-10 mb-10" defaultValue="item-0">
+                    <AccordionItem value="item-0">
+                        <AccordionTrigger>How do I get updates?</AccordionTrigger>
+                        <AccordionContent>
+                            Check here! You can also check the on-grounds corkboard, as well as the chalkboard inside of the video theater. If you have the Testflight app installed (iOS), you will recieve a notification when a new update is available.
+                        </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-1">
+                        <AccordionTrigger>What is Testflight? Do I need it?</AccordionTrigger>
+                        <AccordionContent>
+                            In order to keep the app private and for internal use only, we distrubuite the app through Testflight. This allows for easy distribution and updates to the app for authorized users. (It also is a way for me to work around the strict App Store restrictions that I don't want to deal with.)
+                        </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-2">
+                        <AccordionTrigger>Do I need to keep Testflight installed?</AccordionTrigger>
+                        <AccordionContent>
+                            While you do not need to keep the Testflight app installed, it is recommended to keep it installed as that is the only way you can recieve app updates. You can delete it after you have installed the Empathy Guide app, but you would need to redownload the app to get updates.
+                        </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-3">
+                        <AccordionTrigger>Is it safe to install on Android?</AccordionTrigger>
+                        <AccordionContent>
+                            Yes, it is safe. "Install unknown apps" is a standard security message that appears when you download an app from a source other than the Google Play Store. It is meant to protect your device from bad actors. The Empathy Guide app is safe to install and use. For extra protection, you can go into settings and disable "Install apps from this source" after you have installed the empathy guide app.
+                        </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-4">
+                        <AccordionTrigger>Can I share this with my friends & family?</AccordionTrigger>
+                        <AccordionContent>
+                            No. Just like the web version, this app is for internal use only. While all of the information in this guide is acceptable to share with the public, the app, and link to this site should be shared with Oakland Zoo staff, volunteers, and interns only.
+                        </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-5">
+                        <AccordionTrigger>Why not go through official App Stores?</AccordionTrigger>
+                        <AccordionContent>
+                            Privacy and restrictions. Using Testflight and Google Drive allows us to keep the app private and for internal use only. We can add or remove users, and take down builds if they become public. It also allows me to bypass the strict App Store and Google Play Store restrictions that I don't want to deal with. (There is so much paperwork and legal stuff)
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>
+
             </div>
         </>
     )
