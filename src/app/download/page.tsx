@@ -55,7 +55,7 @@ const Download = () => {
                             <CardDescription>Requires iOS or iPadOS 13.4 or later.</CardDescription>
                         </CardContent>
                         <CardFooter>
-                            <Button variant={"gooeyLeft"}>Download for iOS</Button>
+                        <Link href='https://testflight.apple.com/join/6LDvlFvm' className={buttonVariants({ variant: "gooeyLeft" })}>Visit Site</Link>
                         </CardFooter>
                     </Card>
                     <Card className='mt-5 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg'>
@@ -66,7 +66,7 @@ const Download = () => {
                             <CardDescription>Requires Android 5.0 and up.</CardDescription>
                         </CardContent>
                         <CardFooter>
-                            <Button variant={"gooeyLeft"}>Download for Android</Button>
+                        <Link href='https://drive.google.com/file/d/1zt5UkFq8VBEh3iN43pSw_-yQGsfqD13u/view?usp=drive_link' className={buttonVariants({ variant: "gooeyLeft" })}>Visit Site</Link>
                         </CardFooter>
                     </Card>
                     <Card className='mt-5 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg'>
