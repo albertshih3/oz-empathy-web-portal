@@ -38,10 +38,10 @@ const Download = () => {
                 <Alert className='md:flex justify-between m-5' style={{ maxWidth: '95%' }}>
                     <CircleArrowUpIcon className='m-2' />
                     <div className='ml-5 mt-2 items-center'>
-                        <AlertTitle>Version 1.2.0 is now available!</AlertTitle>
+                        <AlertTitle>Version 1.2.1 is now available!</AlertTitle>
                         <AlertDescription>Download the latest version of the app to get the latest features and improvements.</AlertDescription>
                     </div>
-                    <Button variant={"expandIcon"} iconPlacement="right" Icon={ArrowRight} className="mt-2 md:mt-0 left-12 md:left-0">Learn More</Button>
+                    <Link href='https://ozempathyapp.vercel.app/changelog' className={buttonVariants({ variant: "gooeyLeft" })}>Download for iOS</Link>
                 </Alert>
                 <h1 className='text-3xl font-bold mt-5 ml-5 mr-5'>Download the Empathy Guide Mobile App</h1>
                 <p className='text-lg ml-5 mr-5 mt-2 text-gray-600'>Get started by selecting your device from below.</p>
