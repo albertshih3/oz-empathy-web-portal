@@ -45,14 +45,15 @@ const Changelog = () => {
                     <AccordionItem value="item-0">
                         <AccordionTrigger>Version 1.3</AccordionTrigger>
                         <AccordionContent>
-                            <p>Version 1.3.0 includes the following changes:
-                                <ul>
-                                    <li> - Added a back button to the animal details page (Thanks Momo & TWGS)</li>
-                                    <li> - Reworked code to make loading faster (just for search + CAT)</li>
-                                    <li> - Added buttons for Rainforest and Australia</li>
-                                    <li> - Fixed Shetland Sheep button not having a photo</li>
-                                </ul>
-                                <br />
+                            <p>Version 1.3.0 includes the following changes:</p>
+                            <ul>
+                                <li> - Added a back button to the animal details page (Thanks Momo & TWGS)</li>
+                                <li> - Reworked code to make loading faster (just for search + CAT)</li>
+                                <li> - Added buttons for Rainforest and Australia</li>
+                                <li> - Fixed Shetland Sheep button not having a photo</li>
+                            </ul>
+                            <br />
+                            <p>
                                 **Important for L&E On-Grounds**
                                 Please check to see if loading the 'CAT' section of the app is any faster than before.
                             </p>
@@ -61,23 +62,22 @@ const Changelog = () => {
                     <AccordionItem value="item-1">
                         <AccordionTrigger>Version 1.2.1</AccordionTrigger>
                         <AccordionContent>
-                            <p>Version 1.2.1 includes the following changes:
-                                <ul>
-                                    <li> - Bug fixes and performance improvements</li>
-                                    <li> - Added the following Children's Zoo Animals:</li>
-                                    <li> - Pygmy Goat</li>
-                                    <li> - Pygmy Goat</li>
-                                    <li> - Domestic Goat</li>
-                                    <li> - American Alligator</li>
-                                    <li> - North American River Otter</li>
-                                    <li> - African Spurred Tortoise</li>
-                                    <li> - Aldabra Tortoise</li>
-                                    <li> - Florida Red-Bellied Turtle</li>
-                                    <li> - Domestic Rabbit</li>
-                                    <li> - Shetland Sheep</li>
-                                    <li> - Domestic Cat</li>
-                                </ul>
-                            </p>
+                            <p>Version 1.2.1 includes the following changes:</p>
+                            <ul>
+                                <li> - Bug fixes and performance improvements</li>
+                                <li> - Added the following Children's Zoo Animals:</li>
+                                <li> - Pygmy Goat</li>
+                                <li> - Pygmy Goat</li>
+                                <li> - Domestic Goat</li>
+                                <li> - American Alligator</li>
+                                <li> - North American River Otter</li>
+                                <li> - African Spurred Tortoise</li>
+                                <li> - Aldabra Tortoise</li>
+                                <li> - Florida Red-Bellied Turtle</li>
+                                <li> - Domestic Rabbit</li>
+                                <li> - Shetland Sheep</li>
+                                <li> - Domestic Cat</li>
+                            </ul>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
