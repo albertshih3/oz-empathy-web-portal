@@ -38,10 +38,10 @@ const Download = () => {
                 <Alert className='md:flex justify-between m-5' style={{ maxWidth: '95%' }}>
                     <CircleArrowUpIcon className='m-2' />
                     <div className='ml-5 mt-2 items-center'>
-                        <AlertTitle>Version 1.2.1 is now available!</AlertTitle>
-                        <AlertDescription>Download the latest version of the app to get the latest features and improvements.</AlertDescription>
+                        <AlertTitle>Version 1.3 is now available!</AlertTitle>
+                        <AlertDescription>This version includes major performance improvements! Update to the latest version today!</AlertDescription>
                     </div>
-                    <Link href='https://ozempathyapp.vercel.app/changelog' className={buttonVariants({ variant: "gooeyLeft" })}>Download for iOS</Link>
+                    <Link href='https://ozempathyapp.vercel.app/changelog' className={buttonVariants({ variant: "gooeyLeft" })}>View Changelog</Link>
                 </Alert>
                 <h1 className='text-3xl font-bold mt-5 ml-5 mr-5'>Download the Empathy Guide Mobile App</h1>
                 <p className='text-lg ml-5 mr-5 mt-2 text-gray-600'>Get started by selecting your device from below.</p>
@@ -66,7 +66,7 @@ const Download = () => {
                             <CardDescription>Requires Android 5.0 and up.</CardDescription>
                         </CardContent>
                         <CardFooter>
-                        <Link href='https://drive.google.com/file/d/1zt5UkFq8VBEh3iN43pSw_-yQGsfqD13u/view?usp=drive_link' className={buttonVariants({ variant: "gooeyLeft" })}>Download for Android</Link>
+                        <Link href='https://drive.google.com/file/d/1STML5Q37WVCGsmODj_K7OmLxnJUaEZol/view?usp=drive_link' className={buttonVariants({ variant: "gooeyLeft" })}>Download for Android</Link>
                         </CardFooter>
                     </Card>
                     <Card className='mt-5 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg'>

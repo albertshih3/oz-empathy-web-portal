@@ -43,25 +43,44 @@ const Changelog = () => {
                 <h2 className='text-2xl font-bold mt-10 ml-10 mr-10'>Versions</h2>
                 <Accordion type="single" collapsible className="mt-2 ml-10 mr-10 mb-10" defaultValue="item-0">
                     <AccordionItem value="item-0">
-                        <AccordionTrigger>Version 1.2.1</AccordionTrigger>
+                        <AccordionTrigger>Version 1.3</AccordionTrigger>
                         <AccordionContent>
-                            <p>Version 1.2.1 includes the following changes:
-                                - Bug fixes and performance improvements
-                                - Added the following Children's Zoo Animals:
-                                    - Pygmy Goat
-                                    - Domestic Goat
-                                    - American Alligator
-                                    - North American River Otter
-                                    - African Spurred Tortoise
-                                    - Aldabra Tortoise
-                                    - Florida Red-Bellied Turtle
-                                    - Domestic Rabbit
-                                    - Shetland Sheep
-                                    - Domestic Cat
+                            <p>Version 1.3.0 includes the following changes:
+                                <ul>
+                                    <li> - Added a back button to the animal details page (Thanks Momo & TWGS)</li>
+                                    <li> - Reworked code to make loading faster (just for search + CAT)</li>
+                                    <li> - Added buttons for Rainforest and Australia</li>
+                                    <li> - Fixed Shetland Sheep button not having a photo</li>
+                                </ul>
+                                <br />
+                                **Important for L&E On-Grounds**
+                                Please check to see if loading the 'CAT' section of the app is any faster than before.
                             </p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-1">
+                        <AccordionTrigger>Version 1.2.1</AccordionTrigger>
+                        <AccordionContent>
+                            <p>Version 1.2.1 includes the following changes:
+                                <ul>
+                                    <li> - Bug fixes and performance improvements</li>
+                                    <li> - Added the following Children's Zoo Animals:</li>
+                                    <li> - Pygmy Goat</li>
+                                    <li> - Pygmy Goat</li>
+                                    <li> - Domestic Goat</li>
+                                    <li> - American Alligator</li>
+                                    <li> - North American River Otter</li>
+                                    <li> - African Spurred Tortoise</li>
+                                    <li> - Aldabra Tortoise</li>
+                                    <li> - Florida Red-Bellied Turtle</li>
+                                    <li> - Domestic Rabbit</li>
+                                    <li> - Shetland Sheep</li>
+                                    <li> - Domestic Cat</li>
+                                </ul>
+                            </p>
+                        </AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-2">
                         <AccordionTrigger>Version 1.2.0</AccordionTrigger>
                         <AccordionContent>
                             <p>Version 1.2.0
