@@ -45,7 +45,7 @@ const Changelog = () => {
                 <AccordionItem value="item-0">
                         <AccordionTrigger>Version 1.3.1</AccordionTrigger>
                         <AccordionContent>
-                            <p>Version 1.3.0 includes the following changes:</p>
+                            <p>Version 1.3.1 includes the following changes:</p>
                             <ul>
                                 <li> - Loading times have been vastly improved for all sections of the zoo (Thanks Keith, Taylor, and Anna for testing this out for me)</li>
                                 <li> - Offline use should be much more stable, and be much faster than before</li>
