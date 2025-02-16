@@ -38,7 +38,7 @@ const Download = () => {
                 <Alert className='md:flex justify-between m-5' style={{ maxWidth: '95%' }}>
                     <CircleArrowUpIcon className='m-2' />
                     <div className='ml-5 mt-2 items-center'>
-                        <AlertTitle>Version 1.3.1 is now available!</AlertTitle>
+                        <AlertTitle>Version 1.4.0 is now available!</AlertTitle>
                         <AlertDescription>This version includes major performance improvements! Update to the latest version today!</AlertDescription>
                     </div>
                     <Link href='https://ozempathyapp.vercel.app/changelog' className={buttonVariants({ variant: "gooeyLeft" })}>View Changelog</Link>
@@ -66,7 +66,7 @@ const Download = () => {
                             <CardDescription>Requires Android 5.0 and up.</CardDescription>
                         </CardContent>
                         <CardFooter>
-                        <Link href='https://drive.google.com/file/d/1OoKR4003aTrBSQZ73RubOmeZSzcPeSUy/view?usp=drive_link' className={buttonVariants({ variant: "gooeyLeft" })}>Download for Android</Link>
+                        <Link href='https://drive.google.com/file/d/1Mj6b05_5sjsnkBQVtieq--xVeSoqRNrf/view?usp=sharing' className={buttonVariants({ variant: "gooeyLeft" })}>Download for Android</Link>
                         </CardFooter>
                     </Card>
                     <Card className='mt-5 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg'>
