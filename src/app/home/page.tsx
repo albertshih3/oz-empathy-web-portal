@@ -200,152 +200,208 @@ const Home = () => {
 
     return (
         <>
-            <div className="flex w-full justify-between p-5 border-b border-gray-100">
+            <div className="flex w-full justify-between items-center p-6 border-b border-gray-100 bg-white/50 backdrop-blur-sm sticky top-0 z-40">
                 <NavBar />
-                <Button variant="outline" onClick={signOutUser}>Logout</Button>
+                <Button variant="outline" onClick={signOutUser} className="hover:bg-destructive hover:text-destructive-foreground transition-colors">
+                    Logout
+                </Button>
             </div>
-            <div className="p-5">
-                <Input
-                    className="max-w-md mx-auto mb-5"
-                    placeholder="Search animals"
-                    onChange={e => setSearchTerm(e.target.value)}
-                />
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="p-5 bg-gradient-to-br from-background via-background to-muted/20 min-h-screen">
+                <div className="max-w-md mx-auto mb-6">
+                    <Label htmlFor="search" className="text-sm font-medium text-foreground mb-2 block">Search Animals</Label>
+                    <Input
+                        id="search"
+                        className="w-full"
+                        placeholder="Search by species name or individual animal..."
+                        onChange={e => setSearchTerm(e.target.value)}
+                    />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {animalsList.filter(animal =>
                         animal.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         (animal.personalNames && animal.personalNames.some((name: string) => name.toLowerCase().includes(searchTerm.toLowerCase())))
                     ).map((animal, index) => (
-                        <Card key={index}>
-                            <CardHeader>
-                                <img src={animal.photo} alt={animal.name} className="w-full h-48 object-cover rounded-md mb-2" />
-                                <CardTitle>{animal.name}</CardTitle>
+                        <Card key={index} className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-[1.02] border-0 shadow-md">
+                            <CardHeader className="p-0">
+                                <div className="relative">
+                                    <img 
+                                        src={animal.photo} 
+                                        alt={animal.name} 
+                                        className="w-full h-48 object-cover" 
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                                    <CardTitle className="absolute bottom-3 left-3 right-3 text-white text-lg font-semibold">
+                                        {animal.name}
+                                    </CardTitle>
+                                </div>
                             </CardHeader>
-                            <CardContent className="flex flex-col w-full justify-between">
+                            <CardContent className="p-4 space-y-3">
                                 <Dialog>
                                     <DialogTrigger asChild>
-                                        <Button className="mb-2" variant="outline" onClick={() => setSelectedAnimal(animal)}>
+                                        <Button className="w-full" variant="outline" onClick={() => setSelectedAnimal(animal)}>
                                             Edit Species Details
                                             <ChevronRight className="ml-2 h-4 w-4" />
                                         </Button>
                                     </DialogTrigger>
-                                    <DialogContent className="sm:max-w-[600px]">
+                                    <DialogContent className="sm:max-w-[800px] max-h-[80vh] overflow-y-auto">
                                         <DialogHeader>
-                                            <DialogTitle>Edit Species Information</DialogTitle>
-                                            <DialogDescription>
-                                                You can edit the details of the selected species below. Press save to apply changes or press the x button to cancel.
+                                            <DialogTitle className="text-xl font-semibold">Edit Species Information</DialogTitle>
+                                            <DialogDescription className="text-sm text-muted-foreground">
+                                                Update the species details below. All changes will be saved when you click 'Save Changes'.
                                             </DialogDescription>
                                         </DialogHeader>
                                         {selectedAnimal && (
-                                            <div className="grid gap-4 py-4">
-                                                <div className="grid grid-cols-4 items-center gap-4">
-                                                    <Label htmlFor="class" className="text-right">
-                                                        Class
-                                                    </Label>
-                                                    <Input
-                                                        id="class"
-                                                        value={animalClass}
-                                                        onChange={e => setAnimalClass(e.target.value)}
-                                                        className="col-span-3"
-                                                    />
-                                                    <Label htmlFor="diet" className="text-right">
-                                                        Diet
-                                                    </Label>
-                                                    <Input
-                                                        id="diet"
-                                                        value={animalDiet}
-                                                        onChange={e => setAnimalDiet(e.target.value)}
-                                                        className="col-span-3"
-                                                    />
-                                                    <Label htmlFor="family" className="text-right">
-                                                        Family
-                                                    </Label>
-                                                    <Input
-                                                        id="family"
-                                                        value={animalFamily}
-                                                        onChange={e => setAnimalFamily(e.target.value)}
-                                                        className="col-span-3"
-                                                    />
-                                                    <Label htmlFor="genus" className="text-right">
-                                                        Genus
-                                                    </Label>
-                                                    <Input
-                                                        id="genus"
-                                                        value={animalGenus}
-                                                        onChange={e => setAnimalGenus(e.target.value)}
-                                                        className="col-span-3"
-                                                    />
-                                                    <Label htmlFor="lifespan" className="text-right">
-                                                        Lifespan
-                                                    </Label>
-                                                    <Input
-                                                        id="lifespan"
-                                                        value={animalLifespan}
-                                                        onChange={e => setAnimalLifespan(e.target.value)}
-                                                        className="col-span-3"
-                                                    />
-                                                    <Label htmlFor="lifespan_cap" className="text-right">
-                                                        Lifespan in Captivity
-                                                    </Label>
-                                                    <Input
-                                                        id="lifespan_cap"
-                                                        value={animalLifespanCap}
-                                                        onChange={e => setAnimalLifespanCap(e.target.value)}
-                                                        className="col-span-3"
-                                                    />
-                                                    <Label htmlFor="location" className="text-right">
-                                                        Location
-                                                    </Label>
-                                                    <Input
-                                                        id="location"
-                                                        value={animalLocation}
-                                                        onChange={e => setAnimalLocation(e.target.value)}
-                                                        className="col-span-3"
-                                                    />
-                                                    <Label htmlFor="name" className="text-right">
-                                                        Name
-                                                    </Label>
-                                                    <Input
-                                                        id="name"
-                                                        value={animalName}
-                                                        onChange={e => setAnimalName(e.target.value)}
-                                                        className="col-span-3"
-                                                    />
-                                                    <Label htmlFor="photo" className="text-right">
-                                                        Photo URL
-                                                    </Label>
-                                                    <Input
-                                                        id="photo"
-                                                        value={animalPhoto}
-                                                        onChange={e => setAnimalPhoto(e.target.value)}
-                                                        className="col-span-3"
-                                                    />
-                                                    <Label htmlFor="order" className="text-right">
-                                                        Order
-                                                    </Label>
-                                                    <Input
-                                                        id="order"
-                                                        value={animalOrder}
-                                                        onChange={e => setAnimalOrder(e.target.value)}
-                                                        className="col-span-3"
-                                                    />
-                                                    <Label htmlFor="Range" className="text-right">
-                                                        Range
-                                                    </Label>
-                                                    <Input
-                                                        id="range"
-                                                        value={animalRange}
-                                                        onChange={e => setAnimalRange(e.target.value)}
-                                                        className="col-span-3"
-                                                    />
+                                            <div className="space-y-6 py-4">
+                                                {/* Basic Species Info */}
+                                                <div className="space-y-4">
+                                                    <h3 className="text-lg font-medium text-foreground border-b pb-2">Basic Information</h3>
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                        <div className="space-y-2">
+                                                            <Label htmlFor="name" className="text-sm font-medium">Species Name *</Label>
+                                                            <Input
+                                                                id="name"
+                                                                value={animalName}
+                                                                onChange={e => setAnimalName(e.target.value)}
+                                                                placeholder="e.g., African Lion"
+                                                                className="w-full"
+                                                            />
+                                                        </div>
+                                                        <div className="space-y-2">
+                                                            <Label htmlFor="photo" className="text-sm font-medium">Photo URL</Label>
+                                                            <Input
+                                                                id="photo"
+                                                                value={animalPhoto}
+                                                                onChange={e => setAnimalPhoto(e.target.value)}
+                                                                placeholder="https://example.com/photo.jpg"
+                                                                className="w-full"
+                                                            />
+                                                        </div>
+                                                        <div className="space-y-2">
+                                                            <Label htmlFor="diet" className="text-sm font-medium">Diet</Label>
+                                                            <Input
+                                                                id="diet"
+                                                                value={animalDiet}
+                                                                onChange={e => setAnimalDiet(e.target.value)}
+                                                                placeholder="e.g., Carnivore, Herbivore, Omnivore"
+                                                                className="w-full"
+                                                            />
+                                                        </div>
+                                                        <div className="space-y-2">
+                                                            <Label htmlFor="location" className="text-sm font-medium">Zoo Location</Label>
+                                                            <Input
+                                                                id="location"
+                                                                value={animalLocation}
+                                                                onChange={e => setAnimalLocation(e.target.value)}
+                                                                placeholder="e.g., African Savanna, Tropical Forest"
+                                                                className="w-full"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Taxonomy */}
+                                                <div className="space-y-4">
+                                                    <h3 className="text-lg font-medium text-foreground border-b pb-2">Taxonomy</h3>
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                                        <div className="space-y-2">
+                                                            <Label htmlFor="class" className="text-sm font-medium">Class</Label>
+                                                            <Input
+                                                                id="class"
+                                                                value={animalClass}
+                                                                onChange={e => setAnimalClass(e.target.value)}
+                                                                placeholder="e.g., Mammalia"
+                                                                className="w-full"
+                                                            />
+                                                        </div>
+                                                        <div className="space-y-2">
+                                                            <Label htmlFor="order" className="text-sm font-medium">Order</Label>
+                                                            <Input
+                                                                id="order"
+                                                                value={animalOrder}
+                                                                onChange={e => setAnimalOrder(e.target.value)}
+                                                                placeholder="e.g., Carnivora"
+                                                                className="w-full"
+                                                            />
+                                                        </div>
+                                                        <div className="space-y-2">
+                                                            <Label htmlFor="family" className="text-sm font-medium">Family</Label>
+                                                            <Input
+                                                                id="family"
+                                                                value={animalFamily}
+                                                                onChange={e => setAnimalFamily(e.target.value)}
+                                                                placeholder="e.g., Felidae"
+                                                                className="w-full"
+                                                            />
+                                                        </div>
+                                                        <div className="space-y-2">
+                                                            <Label htmlFor="genus" className="text-sm font-medium">Genus</Label>
+                                                            <Input
+                                                                id="genus"
+                                                                value={animalGenus}
+                                                                onChange={e => setAnimalGenus(e.target.value)}
+                                                                placeholder="e.g., Panthera"
+                                                                className="w-full"
+                                                            />
+                                                        </div>
+                                                        <div className="space-y-2 md:col-span-2">
+                                                            <Label htmlFor="range" className="text-sm font-medium">Natural Range</Label>
+                                                            <Input
+                                                                id="range"
+                                                                value={animalRange}
+                                                                onChange={e => setAnimalRange(e.target.value)}
+                                                                placeholder="e.g., Sub-Saharan Africa"
+                                                                className="w-full"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Lifespan Information */}
+                                                <div className="space-y-4">
+                                                    <h3 className="text-lg font-medium text-foreground border-b pb-2">Lifespan</h3>
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                        <div className="space-y-2">
+                                                            <Label htmlFor="lifespan" className="text-sm font-medium">Wild Lifespan</Label>
+                                                            <Input
+                                                                id="lifespan"
+                                                                value={animalLifespan}
+                                                                onChange={e => setAnimalLifespan(e.target.value)}
+                                                                placeholder="e.g., 10-14 years"
+                                                                className="w-full"
+                                                            />
+                                                        </div>
+                                                        <div className="space-y-2">
+                                                            <Label htmlFor="lifespan_cap" className="text-sm font-medium">Captivity Lifespan</Label>
+                                                            <Input
+                                                                id="lifespan_cap"
+                                                                value={animalLifespanCap}
+                                                                onChange={e => setAnimalLifespanCap(e.target.value)}
+                                                                placeholder="e.g., 15-20 years"
+                                                                className="w-full"
+                                                            />
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         )}
-                                        <DialogFooter>
-                                            <Button type="submit" onClick={saveChanges}>Save changes</Button>
+                                        <DialogFooter className="flex gap-2 pt-4 border-t">
+                                            <Button 
+                                                variant="outline"
+                                                onClick={() => setSelectedAnimal(null)}
+                                            >
+                                                Cancel
+                                            </Button>
+                                            <Button 
+                                                type="submit" 
+                                                onClick={saveChanges}
+                                                className="bg-primary hover:bg-primary/90"
+                                            >
+                                                Save Changes
+                                            </Button>
                                         </DialogFooter>
                                     </DialogContent>
                                 </Dialog>
-                                <Button variant="outline" onClick={() => router.push(`home/${animal.id}`)}>
+                                <Button className="w-full" variant="default" onClick={() => router.push(`home/${animal.id}`)}>
                                     View Individual Animals
                                     <ChevronRight className="ml-2 h-4 w-4" />
                                 </Button>
@@ -357,125 +413,167 @@ const Home = () => {
             <Dialog open={isNewAnimalDialogOpen} onOpenChange={setIsNewAnimalDialogOpen}>
                 <DialogTrigger asChild>
                     <Button
-                        className="fixed bottom-5 right-5 rounded-full w-14 h-14"
+                        className="fixed bottom-6 right-6 rounded-full w-16 h-16 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-50"
                         onClick={() => setIsNewAnimalDialogOpen(true)}
+                        size="lg"
                     >
-                        <Plus className="h-6 w-6" />
+                        <Plus className="h-7 w-7" />
+                        <span className="sr-only">Add new animal species</span>
                     </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[600px]">
+                <DialogContent className="sm:max-w-[800px] max-h-[80vh] overflow-y-auto">
                     <DialogHeader>
-                        <DialogTitle>Add New Animal</DialogTitle>
-                        <DialogDescription>
-                            Enter the details for the new animal species.
+                        <DialogTitle className="text-xl font-semibold">Add New Animal Species</DialogTitle>
+                        <DialogDescription className="text-sm text-muted-foreground">
+                            Create a new animal species entry for the zoo database. Fill in as many details as possible.
                         </DialogDescription>
                     </DialogHeader>
-                    <div className="grid gap-4 py-4">
-                        {/* Add form fields for new animal */}
-                        <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="class" className="text-right">
-                                Class
-                            </Label>
-                            <Input
-                                id="class"
-                                value={animalClass}
-                                onChange={e => setAnimalClass(e.target.value)}
-                                className="col-span-3"
-                            />
-                            <Label htmlFor="diet" className="text-right">
-                                Diet
-                            </Label>
-                            <Input
-                                id="diet"
-                                value={animalDiet}
-                                onChange={e => setAnimalDiet(e.target.value)}
-                                className="col-span-3"
-                            />
-                            <Label htmlFor="family" className="text-right">
-                                Family
-                            </Label>
-                            <Input
-                                id="family"
-                                value={animalFamily}
-                                onChange={e => setAnimalFamily(e.target.value)}
-                                className="col-span-3"
-                            />
-                            <Label htmlFor="genus" className="text-right">
-                                Genus
-                            </Label>
-                            <Input
-                                id="genus"
-                                value={animalGenus}
-                                onChange={e => setAnimalGenus(e.target.value)}
-                                className="col-span-3"
-                            />
-                            <Label htmlFor="lifespan" className="text-right">
-                                Lifespan
-                            </Label>
-                            <Input
-                                id="lifespan"
-                                value={animalLifespan}
-                                onChange={e => setAnimalLifespan(e.target.value)}
-                                className="col-span-3"
-                            />
-                            <Label htmlFor="lifespan_cap" className="text-right">
-                                Lifespan in Captivity
-                            </Label>
-                            <Input
-                                id="lifespan_cap"
-                                value={animalLifespanCap}
-                                onChange={e => setAnimalLifespanCap(e.target.value)}
-                                className="col-span-3"
-                            />
-                            <Label htmlFor="location" className="text-right">
-                                Location
-                            </Label>
-                            <Input
-                                id="location"
-                                value={animalLocation}
-                                onChange={e => setAnimalLocation(e.target.value)}
-                                className="col-span-3"
-                            />
-                            <Label htmlFor="name" className="text-right">
-                                Name
-                            </Label>
-                            <Input
-                                id="name"
-                                value={animalName}
-                                onChange={e => setAnimalName(e.target.value)}
-                                className="col-span-3"
-                            />
-                            <Label htmlFor="photo" className="text-right">
-                                Photo URL
-                            </Label>
-                            <Input
-                                id="photo"
-                                value={animalPhoto}
-                                onChange={e => setAnimalPhoto(e.target.value)}
-                                className="col-span-3"
-                            />
-                            <Label htmlFor="order" className="text-right">
-                                Order
-                            </Label>
-                            <Input
-                                id="order"
-                                value={animalOrder}
-                                onChange={e => setAnimalOrder(e.target.value)}
-                                className="col-span-3"
-                            />
-                            <Label htmlFor="Range" className="text-right">
-                                Range
-                            </Label>
-                            <Input
-                                id="range"
-                                value={animalRange}
-                                onChange={e => setAnimalRange(e.target.value)}
-                                className="col-span-3"
-                            />
+                    <div className="space-y-6 py-4">
+                        {/* Basic Species Info */}
+                        <div className="space-y-4">
+                            <h3 className="text-lg font-medium text-foreground border-b pb-2">Basic Information</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="name" className="text-sm font-medium">Species Name *</Label>
+                                    <Input
+                                        id="name"
+                                        value={animalName}
+                                        onChange={e => setAnimalName(e.target.value)}
+                                        placeholder="e.g., African Lion"
+                                        className="w-full"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="photo" className="text-sm font-medium">Photo URL</Label>
+                                    <Input
+                                        id="photo"
+                                        value={animalPhoto}
+                                        onChange={e => setAnimalPhoto(e.target.value)}
+                                        placeholder="https://example.com/photo.jpg"
+                                        className="w-full"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="diet" className="text-sm font-medium">Diet</Label>
+                                    <Input
+                                        id="diet"
+                                        value={animalDiet}
+                                        onChange={e => setAnimalDiet(e.target.value)}
+                                        placeholder="e.g., Carnivore, Herbivore, Omnivore"
+                                        className="w-full"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="location" className="text-sm font-medium">Zoo Location</Label>
+                                    <Input
+                                        id="location"
+                                        value={animalLocation}
+                                        onChange={e => setAnimalLocation(e.target.value)}
+                                        placeholder="e.g., African Savanna, Tropical Forest"
+                                        className="w-full"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Taxonomy */}
+                        <div className="space-y-4">
+                            <h3 className="text-lg font-medium text-foreground border-b pb-2">Taxonomy</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="class" className="text-sm font-medium">Class</Label>
+                                    <Input
+                                        id="class"
+                                        value={animalClass}
+                                        onChange={e => setAnimalClass(e.target.value)}
+                                        placeholder="e.g., Mammalia"
+                                        className="w-full"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="order" className="text-sm font-medium">Order</Label>
+                                    <Input
+                                        id="order"
+                                        value={animalOrder}
+                                        onChange={e => setAnimalOrder(e.target.value)}
+                                        placeholder="e.g., Carnivora"
+                                        className="w-full"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="family" className="text-sm font-medium">Family</Label>
+                                    <Input
+                                        id="family"
+                                        value={animalFamily}
+                                        onChange={e => setAnimalFamily(e.target.value)}
+                                        placeholder="e.g., Felidae"
+                                        className="w-full"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="genus" className="text-sm font-medium">Genus</Label>
+                                    <Input
+                                        id="genus"
+                                        value={animalGenus}
+                                        onChange={e => setAnimalGenus(e.target.value)}
+                                        placeholder="e.g., Panthera"
+                                        className="w-full"
+                                    />
+                                </div>
+                                <div className="space-y-2 md:col-span-2">
+                                    <Label htmlFor="range" className="text-sm font-medium">Natural Range</Label>
+                                    <Input
+                                        id="range"
+                                        value={animalRange}
+                                        onChange={e => setAnimalRange(e.target.value)}
+                                        placeholder="e.g., Sub-Saharan Africa"
+                                        className="w-full"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Lifespan Information */}
+                        <div className="space-y-4">
+                            <h3 className="text-lg font-medium text-foreground border-b pb-2">Lifespan</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="lifespan" className="text-sm font-medium">Wild Lifespan</Label>
+                                    <Input
+                                        id="lifespan"
+                                        value={animalLifespan}
+                                        onChange={e => setAnimalLifespan(e.target.value)}
+                                        placeholder="e.g., 10-14 years"
+                                        className="w-full"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="lifespan_cap" className="text-sm font-medium">Captivity Lifespan</Label>
+                                    <Input
+                                        id="lifespan_cap"
+                                        value={animalLifespanCap}
+                                        onChange={e => setAnimalLifespanCap(e.target.value)}
+                                        placeholder="e.g., 15-20 years"
+                                        className="w-full"
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <DialogFooter>
-                        <Button type="submit" onClick={createNewAnimal}>Create Animal</Button>
+                    <DialogFooter className="flex gap-2 pt-4 border-t">
+                        <Button 
+                            variant="outline"
+                            onClick={() => setIsNewAnimalDialogOpen(false)}
+                        >
+                            Cancel
+                        </Button>
+                        <Button 
+                            type="submit" 
+                            onClick={createNewAnimal}
+                            className="bg-primary hover:bg-primary/90"
+                        >
+                            Create Species
+                        </Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
