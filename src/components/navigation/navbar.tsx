@@ -14,7 +14,11 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
-export function NavBar() {
+interface NavBarProps {
+    isAuthenticated?: boolean;
+}
+
+export function NavBar({ isAuthenticated = false }: NavBarProps) {
     return (
         <>
             <NavigationMenu>
@@ -27,17 +31,29 @@ export function NavBar() {
                                     <NavigationMenuLink asChild>
                                         <a
                                             className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                                            href="/"
+                                            href={isAuthenticated ? "/home" : "/"}
                                         >
                                             <div className="mb-2 mt-4 text-lg font-medium">
-                                                View Animals
+                                                Main Menu
                                             </div>
                                             <p className="text-sm leading-tight text-muted-foreground">
-                                                Go back to the home page to view all animals in the database.
+                                                {isAuthenticated 
+                                                    ? "Manage and edit animals in the database." 
+                                                    : "Go back to the home page to view all animals in the database."
+                                                }
                                             </p>
                                         </a>
                                     </NavigationMenuLink>
                                 </li>
+                                {isAuthenticated ? (
+                                    <ListItem href="/home" title="Manage Animals">
+                                        Edit, add, and manage animals in the database.
+                                    </ListItem>
+                                ) : (
+                                    <ListItem href="/" title="Login to Manage Animals">
+                                        Sign in to edit, add, and manage animals in the database.
+                                    </ListItem>
+                                )}
                                 <ListItem href="/download" title="Download the app">
                                     View the external app download page to download the app.
                                 </ListItem>

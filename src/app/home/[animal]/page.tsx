@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { initializeApp } from "firebase/app";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, collection, getDocs, doc, updateDoc, addDoc, DocumentData, Timestamp } from "firebase/firestore";
+import { getFirestore, collection, getDocs, doc, updateDoc, addDoc, deleteDoc, DocumentData, Timestamp } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 import { useRouter } from "next/navigation";
 import { ChevronRight, Plus } from "lucide-react";
@@ -16,6 +16,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
+import { ImageInput } from "@/components/ui/image-input";
+import { DeleteConfirmationDialog } from "@/components/delete-confirmation-dialog";
 import Unauthorized from "@/components/unauthorized";
 
 import { firebaseConfig } from "@/lib/firebaseconfig";
@@ -57,6 +59,7 @@ const Animal = ({ params }: { params: Params }) => {
   const [selectedAnimal, setSelectedAnimal] = useState<DocumentData | null>(null);
   const [personalData, setPersonalData] = useState<{ id: string; aniid: string; photourl: string; name: string; }[]>([]);
   const [isAddingNew, setIsAddingNew] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const [arrived, setArrived] = useState('');
   const [born, setBorn] = useState('');
@@ -188,6 +191,30 @@ const Animal = ({ params }: { params: Params }) => {
     }
   };
 
+  const deleteAnimal = async () => {
+    if (!selectedAnimal) return;
+    
+    const paramsDocumentId = params.animal;
+    const actualDocumentId = selectedAnimal.aniid;
+    const animalRef = doc(db, 'animals', paramsDocumentId, 'personal', actualDocumentId);
+
+    try {
+      await deleteDoc(animalRef);
+      
+      // Refresh the animal list to remove the deleted animal
+      await fetchPersonalAnimals();
+      
+      // Close dialogs and navigate back
+      setShowDeleteDialog(false);
+      setSelectedAnimal(null);
+      router.push(`/home`);
+    } catch (error) {
+      console.error("Error deleting animal: ", error);
+      toast.error("Failed to delete animal.");
+      throw error; // Re-throw to be handled by the delete dialog
+    }
+  };
+
   if (!user) {
     return <Unauthorized />;
   }
@@ -195,7 +222,7 @@ const Animal = ({ params }: { params: Params }) => {
   return (
     <>
       <div className='flex w-full justify-between items-center p-6 border-b border-gray-100 bg-white/50 backdrop-blur-sm sticky top-0 z-40'>
-        <NavBar />
+        <NavBar isAuthenticated={!!user} />
         <Button variant="outline" onClick={signOutUser} className="hover:bg-destructive hover:text-destructive-foreground transition-colors">
           Logout
         </Button>
@@ -330,26 +357,13 @@ const Animal = ({ params }: { params: Params }) => {
               <h3 className="text-lg font-medium text-foreground border-b pb-2">Media</h3>
               <div className="grid grid-cols-1 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="photourl" className="text-sm font-medium">Photo URL</Label>
-                  <Input
+                  <ImageInput
                     id="photourl"
+                    label="Photo"
                     value={photourl}
-                    onChange={e => setPhotourl(e.target.value)}
+                    onChange={setPhotourl}
                     placeholder="https://example.com/photo.jpg"
-                    className="w-full"
                   />
-                  {photourl && (
-                    <div className="mt-2">
-                      <img 
-                        src={photourl} 
-                        alt="Preview" 
-                        className="w-32 h-32 object-cover rounded-md border"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                    </div>
-                  )}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="photocredit" className="text-sm font-medium">Photo Credit</Label>
@@ -384,23 +398,37 @@ const Animal = ({ params }: { params: Params }) => {
             </div>
           </div>
           <DialogFooter className="flex gap-2 pt-4 border-t">
-            <Button 
-              variant="outline" 
-              onClick={() => {
-                // Reset form and close dialog
-                setIsAddingNew(false);
-                setSelectedAnimal(null);
-              }}
-            >
-              Cancel
-            </Button>
-            <Button 
-              type="submit" 
-              onClick={isAddingNew ? addNewAnimal : saveChanges}
-              className="bg-primary hover:bg-primary/90"
-            >
-              {isAddingNew ? "Add Animal" : "Save Changes"}
-            </Button>
+            <div className="flex w-full justify-between">
+              <div>
+                {!isAddingNew && selectedAnimal && (
+                  <Button 
+                    variant="destructive"
+                    onClick={() => setShowDeleteDialog(true)}
+                  >
+                    Delete Animal
+                  </Button>
+                )}
+              </div>
+              <div className="flex gap-2">
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    // Reset form and close dialog
+                    setIsAddingNew(false);
+                    setSelectedAnimal(null);
+                  }}
+                >
+                  Cancel
+                </Button>
+                <Button 
+                  type="submit" 
+                  onClick={isAddingNew ? addNewAnimal : saveChanges}
+                  className="bg-primary hover:bg-primary/90"
+                >
+                  {isAddingNew ? "Add Animal" : "Save Changes"}
+                </Button>
+              </div>
+            </div>
           </DialogFooter>
         </DialogContent>
         <div className="fixed bottom-6 right-6 z-50">
@@ -429,6 +457,14 @@ const Animal = ({ params }: { params: Params }) => {
           </DialogTrigger>
         </div>
       </Dialog>
+      
+      <DeleteConfirmationDialog
+        isOpen={showDeleteDialog}
+        onClose={() => setShowDeleteDialog(false)}
+        onConfirm={deleteAnimal}
+        itemName={selectedAnimal?.name || 'this animal'}
+        itemType="Animal"
+      />
       </div>
     </>
   );

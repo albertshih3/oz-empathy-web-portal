@@ -201,7 +201,7 @@ const Home = () => {
     return (
         <>
             <div className="flex w-full justify-between items-center p-6 border-b border-gray-100 bg-white/50 backdrop-blur-sm sticky top-0 z-40">
-                <NavBar />
+                <NavBar isAuthenticated={!!user} />
                 <Button variant="outline" onClick={signOutUser} className="hover:bg-destructive hover:text-destructive-foreground transition-colors">
                     Logout
                 </Button>
