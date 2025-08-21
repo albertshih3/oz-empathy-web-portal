@@ -74,7 +74,7 @@ export function DeleteConfirmationDialog({
       
       toast.success(`${itemType} deleted successfully`);
       onClose();
-    } catch (error: any) {
+    } catch (error: FirebaseError) {
       console.error("Password verification failed:", error);
       if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
         toast.error("Incorrect password. Please try again.");
