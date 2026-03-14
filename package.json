@@ -20,7 +20,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
-    "firebase": "^10.12.3",
+    "firebase": "^12.10.0",
     "lucide-react": "^0.401.0",
     "motion": "^12.23.12",
     "next": "14.2.4",
